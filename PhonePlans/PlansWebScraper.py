@@ -23,8 +23,9 @@ driver.get(rogersUrl)
 # Perks: //*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[1]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[2]/p[2]
 
 # Gather all deals (all have tile with same class name)
-#Note: newer version of selenium so must specify getting elements By XPATH (Must also import 'By')
+#Note: newer version of selenium so must specify getting elements By XPATH (Must also import 'By' and separate space in class name by dots)
 deals = driver.find_elements(By.CLASS_NAME, 'col-12.col-sm-6.col-md-4.mb-24.mt-sm-0.mt-md-0.ng-star-inserted')
 
+# Loop to iterate through each deal
 for deal in deals:
     print(deal)
