@@ -24,9 +24,7 @@ driver.get(rogersUrl)
 
 # Gather all deals (all have tile with same class name)
 #Note: newer version of selenium so must specify getting elements By XPATH (Must also import 'By')
-deals = driver.find_elements(By.CLASS_NAME, 'col-12 col-sm-6 col-md-4 mb-24 mt-sm-0 mt-md-0 ng-star-inserted')
+deals = driver.find_elements(By.CLASS_NAME, 'col-12.col-sm-6.col-md-4.mb-24.mt-sm-0.mt-md-0.ng-star-inserted')
 
-print(deals)
-
-# for deal in deals:
-#     print(deal)
+for deal in deals:
+    print(deal)
