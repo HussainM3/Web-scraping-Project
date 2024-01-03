@@ -28,12 +28,14 @@ driver.get(rogersUrl)
 deals = driver.find_elements(By.CLASS_NAME, 'col-12.col-sm-6.col-md-4.mb-24.mt-sm-0.mt-md-0.ng-star-inserted')
 
 # Loop to iterate through each deal
-for deal in deals:
+for deal in range(1, len(deals)+1):
     # each element gotton using XPATH
-    name = deal.find_element(By.XPATH, '//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[1]/dsa-vertical-tile/ds-tile/div/div/div[2]/p[2]').text
-    price = deal.find_element(By.XPATH, '//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[1]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/ds-price/div').text
-    desc = deal.find_element(By.XPATH, '//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[1]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/p[2]').text
-    features = deal.find_element(By.XPATH, '//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[1]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[1]/p[2]').text
-    perks = deal.find_element(By.XPATH, '//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[1]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[2]/p[2]').text
+    #XPATH always starts from closest block with id (in this case *[@id="converge"]). Since closest id was outside changing block, path needed to be edited
+    name = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/p[2]').text
+    price = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/ds-price/div/div/div[2]').text
+    desc = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/p[2]').text
+    features = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[1]/p[2]').text
+    perks = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[2]/p[2]').text
+    price = price.strip("\n")
     print(name, ": ", price)
     
