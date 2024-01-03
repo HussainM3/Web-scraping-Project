@@ -1,0 +1,25 @@
+Rogers Plans:
+------------------------------------------------------------
+
+Name: 5G Infinite Essential
+Price: $55.00
+Description: When paired with a home service15 and after Automatic Payments Discount11
+Features: Access to 5G/5G+ network
+50 GB 120 GB at speeds up to 1 Gbps. Unlimited data at reduced speeds thereafter*
+Unlimited Canada-wide talk and text1
+Unlimited international texting and picture/video messaging from Canada4
+Spam Call Detect
+Perks: Home customers save $30/mo on the first line
+Home customers save $30/mo on every additional line
+
+Name: 5G Infinite Premium
+Price: $70.00
+Description: When paired with a home service15 and after Automatic Payments Discount11
+Features: Calling, texting and data within Canada, the U.S. and Mexico2
+Access to 5G/5G+ network
+100 GB 150 GB at speeds up to 1 Gbps. Unlimited data at reduced speeds thereafter*
+Unlimited international texting and picture/video messaging from Canada, the U.S. and Mexico17
+Spam Call Detect
+Perks: Home customers save $35/mo on the first line
+Home customers save $30/mo on every additional line
+

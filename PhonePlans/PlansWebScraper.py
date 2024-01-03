@@ -47,14 +47,23 @@ rogersPlans = []
 
 # Loop to iterate through each deal
 for deal in range(1, len(deals)+1):
+    # wait to ensure everythin is loaded (otherwise will get StaleElementReferenceException)
+    driver.implicitly_wait(10)
+    
     # each element gotton using XPATH
     #XPATH always starts from closest block with id (in this case *[@id="converge"]). Since closest id was outside changing block, path needed to be edited
     name = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/p[2]').text
+    driver.implicitly_wait(10)
     priceDollars = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/ds-price/div/div/div[1]').text
+    driver.implicitly_wait(10)
     priceCents = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/ds-price/div/div/div[2]').text
+    driver.implicitly_wait(10)
     priceFreq = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/ds-price/div/div/div[3]').text
+    driver.implicitly_wait(10)
     desc = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/div[2]/dsa-price/div/p[2]').text
+    driver.implicitly_wait(10)
     features = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[1]/p[2]').text
+    driver.implicitly_wait(10)
     perks = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/ul/li[2]/p[2]').text
     # print(name + ": " + priceDollars + priceCents + priceFreq)
 
@@ -62,7 +71,7 @@ for deal in range(1, len(deals)+1):
     rogersPlans.append(RogersPlan(name, priceDollars, priceCents, priceFreq, desc, features, perks))
 
 # Add all plans to text file
-with open("plans.txt", "w") as file:
-    file.write("Rogers Plans:\n")
+with open("PhonePlans/plans.txt", "w") as file:
+    file.write("Rogers Plans:\n------------------------------------------------------------\n\n")
     for plan in rogersPlans:
         file.write(str(plan) + "\n\n")
