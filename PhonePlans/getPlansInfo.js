@@ -1,7 +1,5 @@
 // File to be used for reading phone plans for displaying on website through html file
 
-const { get } = require('http');
-
 // function for reading file and getting phone plan content
 function getFileData(){
     const fs = require('fs');
@@ -43,6 +41,14 @@ function getFileData(){
     }
     return plansArray;
 }
-var fileData = getFileData();
-console.log(fileData);
+
+// function to render phone deals on a HTML page
+function renderPhoneDeals(){
+    const phoneDeals = getFileData();
+    const dealsContainer = document.getElementById('phoneDealsContainer');    
+    
+    // Clear any deals content previously rendered
+    dealsContainer.innerHTML = '';
+
+}
 
