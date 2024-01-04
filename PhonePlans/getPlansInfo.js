@@ -4,15 +4,12 @@ const { get } = require('http');
 
 // function for reading file and getting phone plan content
 function getFileData(){
-    var fs = require('fs');
+    const fs = require('fs');
 
-    // reads file and saves to variable 
-        // first param is file to read
-        // second param is call back which contains err (if exists) and data read
-    const allData = fs.readFile('/plans.txt', (err, data) => {
-        if (err) throw err;
-        console.log(data);
-    });
+    // explicitly specify 'utf8' the encoding for proper text
+    var data = fs.readFileSync('PhonePlans/plans.txt', 'utf8') 
+
+    console.log(data);
 }
 
 getFileData();
