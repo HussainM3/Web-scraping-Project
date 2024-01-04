@@ -18,7 +18,7 @@ function readTextFile(file){
 
     xhr.open('GET', filePath, true);
     xhr.send();
-}
+} // still not working, see https://stackoverflow.com/questions/12174861/opening-a-text-file-in-browser-error-on-server
 
 // function for reading file and getting phone plan content
 function getFileData(data){
