@@ -16,8 +16,17 @@ function getFileData(){
     var plansSections = data.split('**************************************************');
     plansSections = plansSections.slice(1,plansSections.length - 1);
     
+    // loop through each section
+    for (var section of plansSections){
+        // dictionary for each plan
+        plan = {}
+        
+        const carrier = section.substring(0, section.indexOf(':'));
+        console.log(carrier);
+
+
+    }
     
-    console.log(plansSections + "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST");
 }
 
 getFileData();
