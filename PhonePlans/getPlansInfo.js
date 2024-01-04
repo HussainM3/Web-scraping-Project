@@ -27,8 +27,18 @@ function getFileData(){
         // trimming section to just plans
         section = section.substring(section.indexOf('Name:'));
         
+        // splitting each plan into list
         subSections = section.split("\n\n")
 
+        // iterating through each plan and collecting info
+        for (var eachPlanInfo of subSections){
+            plan.carrier = carrier;
+            plan.name = eachPlanInfo.substring(eachPlanInfo.indexOf('Name:') + 6, eachPlanInfo.indexOf('\nPrice:'));
+            plan.price = eachPlanInfo.substring(eachPlanInfo.indexOf('Price:') + 7, eachPlanInfo.indexOf('\nDesc'));
+            plan.desc = eachPlanInfo.substring(eachPlanInfo.indexOf('Description:') + 13, eachPlanInfo.indexOf('\nFeatures:'));
+            plan.features = eachPlanInfo.substring(eachPlanInfo.indexOf('Features:') + 10, eachPlanInfo.indexOf('\nPerks:'));
+            plan.perks = eachPlanInfo.substring(eachPlanInfo.indexOf('Perks:') + 7, eachPlanInfo.indexOf('\n\n'));
+        }
     }
     
 }
