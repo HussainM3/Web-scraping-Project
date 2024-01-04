@@ -65,3 +65,5 @@ function renderPhoneDeals(){
     }
 }
 
+// call function to render phone deals when page loads
+window.onload = renderPhoneDeals;
