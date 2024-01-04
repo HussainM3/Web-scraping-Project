@@ -9,9 +9,15 @@ function getFileData(){
     // explicitly specify 'utf8' the encoding for proper text
     var data = fs.readFileSync('PhonePlans/plans.txt', 'utf8') 
 
+    // array to be used for each plan
     const plansData = [];
 
+    // split data into carrier sections (remove empty sections)
+    var plansSections = data.split('**************************************************');
+    plansSections = plansSections.slice(1,plansSections.length - 1);
     
+    
+    console.log(plansSections + "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST");
 }
 
 getFileData();
