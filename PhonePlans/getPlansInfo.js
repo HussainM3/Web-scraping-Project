@@ -57,13 +57,37 @@ function renderPhoneDeals(){
         // Create div for each deal
         const dealDiv = document.createElement('div');
 
-        // Set text content for each deal
-        dealDiv.textContent = `${deal.carrier} ${deal.name} ${deal.price} ${deal.desc} ${deal.features} ${deal.perks}`;
+        // Create separate elements for each piece of information
+        const carrierElement = document.createElement('p');
+        carrierElement.textContent = `${deal.carrier}`;
+        
+        const nameElement = document.createElement('p');
+        nameElement.textContent = `${deal.name}`;
+        
+        const priceElement = document.createElement('p');
+        priceElement.textContent = `${deal.price}`;
+        
+        const descElement = document.createElement('p');
+        descElement.textContent = `${deal.desc}`;
+        
+        const featuresElement = document.createElement('p');
+        featuresElement.textContent = `${deal.features}`;
+        
+        const perksElement = document.createElement('p');
+        perksElement.textContent = `${deal.perks}`;
+
+        // Append each element to the dealDiv
+        dealDiv.appendChild(carrierElement);
+        dealDiv.appendChild(nameElement);
+        dealDiv.appendChild(priceElement);
+        dealDiv.appendChild(descElement);
+        dealDiv.appendChild(featuresElement);
+        dealDiv.appendChild(perksElement);
 
         // Append each deal div to deals container
         dealsContainer.appendChild(dealDiv);
     }
 }
 
-// call function to render phone deals when page loads
-window.onload = renderPhoneDeals;
+// add event listener to render phone deals when page loads
+document.addEventListener('DOMContentLoaded', renderPhoneDeals);
