@@ -9,7 +9,9 @@ function getFileData(){
     // explicitly specify 'utf8' the encoding for proper text
     var data = fs.readFileSync('PhonePlans/plans.txt', 'utf8') 
 
-    console.log(data);
+    const plansData = [];
+
+    
 }
 
 getFileData();
