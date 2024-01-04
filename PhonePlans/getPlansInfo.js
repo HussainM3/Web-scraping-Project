@@ -21,9 +21,13 @@ function getFileData(){
         // dictionary for each plan
         plan = {}
         
+        // getting carrier
         const carrier = section.substring(0, section.indexOf(':'));
-        console.log(carrier);
 
+        // trimming section to just plans
+        section = section.substring(section.indexOf('Name:'));
+        
+        subSections = section.split("\n\n")
 
     }
     
