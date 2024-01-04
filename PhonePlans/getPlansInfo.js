@@ -1,5 +1,25 @@
 // File to be used for reading phone plans for displaying on website through html file
 
+// separate reading function
+function readTextFile(file){
+    const filePath = 'PhonePlans/plans.txt';  // Replace with the actual path to your text file
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const plansData = getFileData(xhr.responseText);
+                renderPhoneDeals(plansData);
+            } else {
+                console.error('Error reading file:', xhr.status);
+            }
+        }
+    };
+
+    xhr.open('GET', filePath, true);
+    xhr.send();
+}
+
 // function for reading file and getting phone plan content
 function getFileData(data){
     // cant use fs when working with browser, so using fetch instead
@@ -8,7 +28,7 @@ function getFileData(data){
     // // explicitly specify 'utf8' the encoding for proper text
     // var data = fs.readFileSync('PhonePlans/plans.txt', 'utf8') 
     
-    // also doesnt work as plans.txt is not in html server
+    // also doesnt work as file not appearing
     // // initialize data variable
     // var data = '';
     // fetch('PhonePlans/plans.txt')
@@ -16,6 +36,9 @@ function getFileData(data){
     // .then(planData => {                    // next then() in the chain processes the data extracted from the response
     //         data = planData;
     //     }).catch(error => console.error('Error reading file:', error));
+
+    // initialize data variable
+    var data = '';
 
     // array to be used for each plan
     const plansArray = [];
@@ -100,4 +123,4 @@ function renderPhoneDeals(){
 }
 
 // add event listener to render phone deals when page loads
-document.addEventListener('DOMContentLoaded', renderPhoneDeals);
+document.addEventListener('DOMContentLoaded', getFileData());
