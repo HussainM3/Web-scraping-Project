@@ -50,5 +50,18 @@ function renderPhoneDeals(){
     // Clear any deals content previously rendered
     dealsContainer.innerHTML = '';
 
+    // Loop through each deal and render it
+    for (let i = 0; i < phoneDeals.length; i++){
+        const deal = phoneDeals[i];
+        
+        // Create div for each deal
+        const dealDiv = document.createElement('div');
+
+        // Set text content for each deal
+        dealDiv.textContent = `${deal.carrier} ${deal.name} ${deal.price} ${deal.desc} ${deal.features} ${deal.perks}`;
+
+        // Append each deal div to deals container
+        dealsContainer.appendChild(dealDiv);
+    }
 }
 
