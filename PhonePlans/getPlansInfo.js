@@ -1,11 +1,21 @@
 // File to be used for reading phone plans for displaying on website through html file
 
 // function for reading file and getting phone plan content
-function getFileData(){
-    const fs = require('fs');
+function getFileData(data){
+    // cant use fs when working with browser, so using fetch instead
+    // const fs = require('fs');
 
-    // explicitly specify 'utf8' the encoding for proper text
-    var data = fs.readFileSync('PhonePlans/plans.txt', 'utf8') 
+    // // explicitly specify 'utf8' the encoding for proper text
+    // var data = fs.readFileSync('PhonePlans/plans.txt', 'utf8') 
+    
+    // also doesnt work as plans.txt is not in html server
+    // // initialize data variable
+    // var data = '';
+    // fetch('PhonePlans/plans.txt')
+    // .then(response => response.text()) //  first then() in the chain is used to process the Response object
+    // .then(planData => {                    // next then() in the chain processes the data extracted from the response
+    //         data = planData;
+    //     }).catch(error => console.error('Error reading file:', error));
 
     // array to be used for each plan
     const plansArray = [];
