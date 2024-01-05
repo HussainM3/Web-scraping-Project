@@ -2,7 +2,7 @@
 
 // separate reading function
 function readTextFile(file){
-    const filePath = 'PhonePlans/plans.txt';  // Replace with the actual path to your text file
+    const filePath = 'http://127.0.0.1:5500/PhonePlans/plans.txt';  // Replace with the actual path to your text file
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
