@@ -123,4 +123,4 @@ function renderPhoneDeals(){
 }
 
 // add event listener to render phone deals when page loads
-document.addEventListener('DOMContentLoaded', getFileData());
+document.addEventListener('DOMContentLoaded', getFileData);
