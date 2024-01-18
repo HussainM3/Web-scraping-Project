@@ -1,24 +1,19 @@
 // File to be used for reading phone plans for displaying on website through html file
 
-// separate reading function
-function readTextFile(file){
-    const filePath = 'http://127.0.0.1:5500/PhonePlans/plans.txt';  // Replace with the actual path to your text file
-    const xhr = new XMLHttpRequest();
+console.log('Script is running!'); // debug to ensure function is running
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                const plansData = getFileData(xhr.responseText);
-                renderPhoneDeals(plansData);
-            } else {
-                console.error('Error reading file:', xhr.status);
-            }
-        }
-    };
+// add event listener to render phone deals when page loads
+document.addEventListener('DOMContentLoaded', function() {
 
-    xhr.open('GET', filePath, true);
-    xhr.send();
-} // still not working, see https://stackoverflow.com/questions/12174861/opening-a-text-file-in-browser-error-on-server
+// reading from text file and rendering data
+fetch('plans.txt')
+  .then(response => response.text())
+  .then(data => {
+    const phoneDeals = getFileData(data);
+    renderPhoneDeals(phoneDeals);
+  })
+  .catch(error => console.error('Error reading file:', error));
+
 
 // function for reading file and getting phone plan content
 function getFileData(data){
@@ -38,19 +33,19 @@ function getFileData(data){
     //     }).catch(error => console.error('Error reading file:', error));
 
     // initialize data variable
-    var data = '';
+    // var data = '';
 
     // array to be used for each plan
-    const plansArray = [];
+    var plansArray = [];
 
     // split data into carrier sections (remove empty sections)
-    var plansSections = data.split('**************************************************');
+    var plansSections = String(data).split('**************************************************');
     plansSections = plansSections.slice(1,plansSections.length - 1);
     
     // loop through each section
     for (var section of plansSections){        
         // getting carrier
-        const carrier = section.substring(0, section.indexOf(':')).trim();
+        var carrier = section.substring(0, section.indexOf(':')).trim();
 
         // trimming section to just plans
         section = section.substring(section.indexOf('Name:'));
@@ -72,12 +67,13 @@ function getFileData(data){
             plansArray.push(plan);
         }
     }
+    console.log('plansarray:', plansArray);
     return plansArray;
 }
 
 // function to render phone deals on a HTML page
-function renderPhoneDeals(){
-    const phoneDeals = getFileData();
+function renderPhoneDeals(phoneDeals){
+    
     const dealsContainer = document.getElementById('phoneDealsContainer');    
     
     // Clear any deals content previously rendered
@@ -120,7 +116,7 @@ function renderPhoneDeals(){
         // Append each deal div to deals container
         dealsContainer.appendChild(dealDiv);
     }
+    console.log('Content of dealsContainer:', dealsContainer);
 }
 
-// add event listener to render phone deals when page loads
-document.addEventListener('DOMContentLoaded', getFileData);
+});
