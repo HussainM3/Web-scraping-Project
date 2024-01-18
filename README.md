@@ -17,10 +17,12 @@
 
 ## Bugs
 
-- Deals with the website not loading properly as text file not uploaded on server    
+- Deals with the website not loading properly as text file not uploaded on server 
+    - resolved! parseData function was being called twice, erasing data from first call
 
 ## Roadmap of future improvements
 
 - Add more websites to scrape from
 - Add more info to scrape from websites
 - Add more CSS to make website look better
+- Configure scraper python file so data paths are updated automatically or don't need to be updated
