@@ -79,7 +79,7 @@ for deal in range(1, len(deals)+1):
     rogersPlans.append(RogersPlan(name, priceDollars, priceCents, priceFreq, desc, features, perks))
 
 # Add all plans to text file
-with open("plans.txt", "w") as file:
+with open("../data/plans.txt", "w") as file:
     file.write("**************************************************\nRogers Plans:\n--------------------------------------------------\n")
     for plan in rogersPlans:
         file.write(str(plan) + "\n\n")
