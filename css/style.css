@@ -4,25 +4,25 @@ body {
     padding: 0;
   }
   
-  header {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 15px;
-  }
-  
-  .phone-deals-container {
-    max-width: 800px;
-    margin: 20px auto;
-  }
-  
-  .phone-deals-container > div {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .phone-deals-container > div:nth-child(even) {
-    background-color: #f9f9f9;
-  }
+header {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.phone-deals-container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.phone-deals-container > div {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.phone-deals-container > div:nth-child(even) {
+  background-color: #f9f9f9;
+}
   
