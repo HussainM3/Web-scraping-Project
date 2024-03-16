@@ -6,7 +6,7 @@ console.log('Script is running!'); // debug to ensure function is running
 document.addEventListener('DOMContentLoaded', function() {
 
     // reading from text file and rendering data
-    fetch('plans.txt')
+    fetch('../data/plans.txt')
     .then(response => response.text()) //  first then() in the chain is used to process the Response object
     .then(data => {                     // next then() in the chain processes the data extracted from the response
         const phoneDeals = getFileData(data);

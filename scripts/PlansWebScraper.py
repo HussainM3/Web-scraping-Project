@@ -52,26 +52,34 @@ for deal in range(1, len(deals)+1):
     
     # each element gotton using XPATH
     #XPATH always starts from closest block with id (in this case *[@id="converge"]). Since closest id was outside changing block, path needed to be edited
-    name = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/p[2]').text
+    # Currently, paths would need to be periodically checked and updated
+    name = ""
+    addDiv = 0
+    try: # try catch as there could be 2 different layouts
+        name = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/p').text #eg 5G Infinite Essential
+    except: 
+        name = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[2]/p[2]').text #eg 5G Infinite Essential
+        addDiv = 1
+
     driver.implicitly_wait(10)
-    priceDollars = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/div[2]/dsa-price/div/ds-price/div/div/div[2]').text
+    priceDollars = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[{addDiv + 1}]/div[2]/dsa-price/div/ds-price/div/div/div[2]').text #eg 60
     driver.implicitly_wait(10)
-    priceCents = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/div[2]/dsa-price/div/ds-price/div/div/div[3]/span').text
+    priceCents = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[{addDiv + 1}]/div[2]/dsa-price/div/ds-price/div/div/div[3]/span').text #eg 00
     driver.implicitly_wait(10)
-    priceFreq = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/div[2]/dsa-price/div/ds-price/div/div/div[4]').text
+    priceFreq = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[{addDiv + 1}]/div[2]/dsa-price/div/ds-price/div/div/div[4]').text #eg /mo±
     driver.implicitly_wait(10)
-    desc = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/div[2]/dsa-price/div/p[2]').text
+    desc = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[{addDiv + 1}]/div[2]/dsa-price/div/p[2]').text #eg When paired with a home service15 and after Automatic Payments Discount11
     driver.implicitly_wait(10)
-    features = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/ul/li[1]/p[2]').text
+    features = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[{addDiv + 1}]/ul/li[1]/p[2]').text #eg Access to 5G/5G+ network ...
     driver.implicitly_wait(10)
-    perks = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[1]/ul/li[2]/p[2]').text
+    perks = deals[deal-1].find_element(By.XPATH, f'//*[@id="converge"]/dsa-layout/div/div/rci-ui-block-wrapper/div/div/rci-ui-block-tile-plans/div/div/div[{deal}]/dsa-vertical-tile/ds-tile/div/div/div[{addDiv + 1}]/ul/li[2]/p[2]').text
     # print(name + ": " + priceDollars + priceCents + priceFreq)
 
     # Create rogers plan object and add to list
     rogersPlans.append(RogersPlan(name, priceDollars, priceCents, priceFreq, desc, features, perks))
 
 # Add all plans to text file
-with open("PhonePlans/plans.txt", "w") as file:
+with open("../data/plans.txt", "w") as file:
     file.write("**************************************************\nRogers Plans:\n--------------------------------------------------\n")
     for plan in rogersPlans:
         file.write(str(plan) + "\n\n")
